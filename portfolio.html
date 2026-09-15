@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sina Akhavansafar — Portfolio</title>
+<meta name="description" content="Portfolio of Sina Akhavansafar, Computer Science student at York University's Lassonde School of Engineering.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EEF3F7;
+    --bg-panel: #E4ECF2;
+    --grid-line: #CBD9E4;
+    --border: #A7BDCC;
+    --text: #142A3D;
+    --text-muted: #52697C;
+    --accent: #B9791E;
+    --accent-contrast: #142A3D;
+    --font-display: 'Space Grotesk', 'Arial Narrow', sans-serif;
+    --font-body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0B2340;
+      --bg-panel: #0F2C4E;
+      --grid-line: #1F4568;
+      --border: #3C6188;
+      --text: #E7EFF6;
+      --text-muted: #9FB7CC;
+      --accent: #F2B84B;
+      --accent-contrast: #10233B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B2340;
+    --bg-panel: #0F2C4E;
+    --grid-line: #1F4568;
+    --border: #3C6188;
+    --text: #E7EFF6;
+    --text-muted: #9FB7CC;
+    --accent: #F2B84B;
+    --accent-contrast: #10233B;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  /* ---- top bar ---- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem clamp(1.25rem, 4vw, 2.5rem);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+  .mark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border: 1.5px solid var(--text);
+    padding: 0.15rem 0.5rem;
+  }
+  .topnav { display: flex; gap: clamp(0.9rem, 2vw, 1.6rem); font-size: 0.92rem; }
+  .topnav a { text-decoration: none; color: var(--text-muted); border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .topnav a:hover, .topnav a:focus-visible { color: var(--text); border-bottom-color: var(--accent); }
+
+  /* ---- hero ---- */
+  .hero {
+    position: relative;
+    padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2.5rem;
+    align-items: end;
+  }
+  .reg { position: absolute; width: 14px; height: 14px; opacity: 0.8; }
+  .reg::before, .reg::after { content: ""; position: absolute; background: var(--text-muted); }
+  .reg::before { width: 100%; height: 1px; top: 50%; }
+  .reg::after { width: 1px; height: 100%; left: 50%; }
+  .reg-tl { top: 0; left: 0; }
+  .reg-tr { top: 0; right: 0; }
+
+  .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6.5vw, 4.4rem);
+    line-height: 1.02;
+    margin: 0 0 0.9rem;
+    letter-spacing: -0.01em;
+  }
+  .name-rule {
+    height: 3px;
+    background: var(--accent);
+    width: 0;
+    margin-bottom: 1.1rem;
+    animation: draw-in 0.9s ease-out 0.15s forwards;
+  }
+  @keyframes draw-in { to { width: 120px; } }
+
+  .tagline {
+    font-size: clamp(1.02rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    max-width: 34rem;
+    margin: 0 0 1.6rem;
+  }
+
+  .cta-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding: 0.65rem 1.15rem;
+    border-radius: 3px;
+    border: 1.5px solid var(--text);
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
+  .btn-primary:hover, .btn-primary:focus-visible { background: transparent; color: var(--text); border-color: var(--text); }
+  .btn-ghost { background: transparent; color: var(--text); }
+  .btn-ghost:hover, .btn-ghost:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+  .title-block {
+    border: 1px solid var(--border);
+    padding: 1rem 1.1rem;
+    margin: 0;
+    background: var(--bg-panel);
+    font-size: 0.9rem;
+  }
+  .tb-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.45rem 0; border-bottom: 1px solid var(--grid-line); }
+  .tb-row:last-child { border-bottom: none; }
+  .tb-row dt { color: var(--text-muted); margin: 0; flex-shrink: 0; }
+  .tb-row dd { margin: 0; text-align: right; font-weight: 500; }
+
+  /* ---- sections ---- */
+  section { padding: clamp(2.2rem, 5vw, 3.5rem) 0; border-top: 1px solid var(--border); }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    margin: 0 0 1.4rem;
+  }
+  .prose { max-width: 62ch; color: var(--text); }
+  .prose.muted { color: var(--text-muted); }
+
+  /* ---- projects ---- */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+  }
+  .project {
+    position: relative;
+    border: 1px solid var(--border);
+    background: var(--bg-panel);
+    padding: 1.5rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .sheet-code {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+  .stamp {
+    position: absolute;
+    top: 1.1rem;
+    right: 1rem;
+    transform: rotate(-6deg);
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.4rem;
+  }
+  .project h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin: 0;
+    padding-right: 4.5rem;
+  }
+  .project p { margin: 0; color: var(--text-muted); font-size: 0.94rem; }
+  .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.3rem 0 0; padding: 0; }
+  .tags li {
+    font-size: 0.78rem;
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.5rem;
+    color: var(--text-muted);
+  }
+
+  /* ---- skills ---- */
+  .skill-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 0; padding: 0; }
+  .skill-list li {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    background: var(--bg-panel);
+    padding: 0.4rem 0.75rem;
+  }
+
+  /* ---- contact / footer ---- */
+  .contact { padding-bottom: clamp(3rem, 6vw, 4.5rem); }
+  .fine-print { margin-top: 2.5rem; font-size: 0.82rem; color: var(--text-muted); }
+
+  /* ---- responsive ---- */
+  @media (max-width: 800px) {
+    .hero { grid-template-columns: 1fr; }
+    .project-grid { grid-template-columns: 1fr; }
+  }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .name-rule { width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a class="mark" href="#top">SA</a>
+    <nav class="topnav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div class="wrap">
+
+    <header class="hero" id="top">
+      <span class="reg reg-tl" aria-hidden="true"></span>
+      <span class="reg reg-tr" aria-hidden="true"></span>
+      <div>
+        <h1 class="name">Sina Akhavansafar</h1>
+        <div class="name-rule"></div>
+        <p class="tagline">Third-year Computer Science student at York University's Lassonde School of Engineering, building toward a Winter 2027 software co-op.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/Box-OS" target="_blank" rel="noopener">View GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/sina-akhavansafar-57a7a3328/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </div>
+      </div>
+      <dl class="title-block">
+        <div class="tb-row"><dt>Role</dt><dd>CS student, software developer</dd></div>
+        <div class="tb-row"><dt>Status</dt><dd>Open to Winter 2027 co-op</dd></div>
+        <div class="tb-row"><dt>Location</dt><dd>Toronto, Ontario</dd></div>
+        <div class="tb-row"><dt>School</dt><dd>York University, Lassonde</dd></div>
+      </dl>
+    </header>
+
+    <section id="about">
+      <h2>About</h2>
+      <p class="prose">I'm a third-year Computer Science student at York University's Lassonde School of Engineering. I like building things that hold up in the real world — a giveaway platform with real checkout logic, a solution that has to work under a competition clock, or an app meant to change a daily habit. My coursework runs through Java, C, Unix, SQL, computer networks, operating systems, software design, and 3D graphics, and I try to spend as much time shipping outside class as I do learning the theory inside it.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project-grid">
+
+        <article class="project">
+          <p class="sheet-code">REV</p>
+          <span class="stamp">Launching soon</span>
+          <h3>REVILLE® — supercar giveaway platform</h3>
+          <p>A custom-coded Shopify store for Nurbu Auto Centre, built entry by entry for a supercar giveaway aimed at car enthusiasts. Handled the theme development in Liquid and JavaScript, the entry and checkout flow, and the product catalogue, backed by market research into the buyers behind it.</p>
+          <ul class="tags">
+            <li>Shopify</li><li>Liquid</li><li>JavaScript</li><li>Market research</li>
+          </ul>
+        </article>
+
+        <article class="project">
+          <p class="sheet-code">ICPC</p>
+          <span class="stamp">Competed 2025</span>
+          <h3>2025 ICPC regional</h3>
+          <p>Competed with a York University team at the 2025 ICPC regional, solving algorithmic problems against the clock. It's what pulled me into competitive programming — I still keep a running habit on LeetCode.</p>
+          <ul class="tags">
+            <li>Algorithms</li><li>Data structures</li><li>C / Java</li><li>Problem solving</li>
+          </ul>
+        </article>
+
+        <article class="project">
+          <p class="sheet-code">DSC</p>
+          <span class="stamp">In progress</span>
+          <h3>Discipline — a habit-building app</h3>
+          <p>A productivity app I'm currently building, grounded in psychological principles, meant to help someone build discipline rather than just log another streak.</p>
+          <ul class="tags">
+            <li>In progress</li><li>Product design</li><li>Psychology</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul class="skill-list">
+        <li>Java</li><li>C</li><li>SQL</li><li>Unix / Linux</li><li>JavaScript</li>
+        <li>Shopify Liquid</li><li>Computer networks</li><li>Operating systems</li>
+        <li>Software design</li><li>3D graphics</li><li>Git</li>
+      </ul>
+    </section>
+
+    <footer class="contact" id="contact">
+      <h2>Get in touch</h2>
+      <p class="prose muted">Open to software development, full-stack, and startup roles across the GTA for Winter 2027.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/Box-OS" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/sina-akhavansafar-57a7a3328/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <p class="fine-print">Sina Akhavansafar, Toronto, Ontario</p>
+    </footer>
+
+  </div>
+</body>
+</html>
